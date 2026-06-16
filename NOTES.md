@@ -24,6 +24,31 @@ Where it is use?
 + Implemented in variations
 
 
+Anatomy of a Request/Response
+
++ A request structure is defined by both client and server
++ Requet has a boundary
++ Defined by a protocol and message format
++ Same for the response
++ E.g.HTTP Request
+
+Building an upload image service with request responde
+
++ Send large request with the image(simple)
++ Chunk image and send a request per chunk(resumable)
+
+
+Doesn't work everythere
+
++ Motification servic3
++ Chatting application
++ Very long running requests
++ What if the client disconnects?
+
+> curl -v --trace out.txt http://google.com
+
+
+
 
 
 
@@ -37,3 +62,5 @@ Where it is use?
 ## Backend Execution patterns
 
 ## Proxying and Load Balancing
+
+
