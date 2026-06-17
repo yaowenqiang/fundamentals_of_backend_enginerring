@@ -4,10 +4,10 @@
 
 ### Request - Response
 
-> classic, simple and everythere
+> classic, simple and everywhere
 
 
-Request Response Model
+#### Request Response Model
 
 + Client sends a Request
 + Server parses the Request
@@ -48,6 +48,59 @@ Doesn't work everythere
 > curl -v --trace out.txt http://google.com
 
 
+Synchronous VS Asynchronous - Can i do work while waiting?
+
+Synchronous I/O
+
++ Caller sends a request and blocks
++ Caller cannot execute any code meanwhile
++ Receiver responds, Caller unblocks
++ Caller and receiver are in 'sync'
+
+Example of an OS synchronous I/O
+
++ Program asks OS to read from disk
++ Program main thread is taken off of the CPU
++ Read completes, program can resume execution
+
+
+Asynchronous I/O
+
++ Caller sends a request
++ Caller can work until it gets a response
++ Caller either:
+  + Checks if the response is ready(epoll)
+  + Receiver calls back when its doen(io_uring)
+  + Spins up a new thread that blocks
++ Caller and receiver are not necessary in sync
+
+Example of an OS Asynchronous call(NodeJS)
+
++ Program spins up a secondary thread
++ Secondary thread reads from disk, OS blocks it
++ Main program still running and executing code
++ Thread finish reading and calls back main thread
+
+Synchronous vs Asynchronous in Request Response
+
++ Synchronous is a client property
++ Most modern client libraries are Asynchronous
++ E.g.Clients send an HTTP request and do work
+
+
+Synchronous vs Asynchronous in real life
+
++ Just in case, it is still confusing
++ In synchronous communication the call waits for a response from receiver
+  + E.g.Asking someone a question in a meeting
++ Asynchronous communication the respone can come whenever, Caller and receiver can do anything meanwhile
+  + Email
+
+
+Asynchronous workload is everywhere
+
++ Asynchronous Programming(promises/futures)
++ Asynchronous backend processing
 
 
 
