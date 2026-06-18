@@ -101,7 +101,14 @@ Asynchronous workload is everywhere
 
 + Asynchronous Programming(promises/futures)
 + Asynchronous backend processing
++ Asynchronous commits in postgres
++ Asynchronous IO in Linux(epoll, io_uring)
++ Asynchronous replication
++ Asynchronous OS fsync(fs cache)
 
+> ext3
+
+#### Push
 
 
 
