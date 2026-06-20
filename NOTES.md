@@ -166,7 +166,74 @@ When request/response isn't ideal
   + Too chatty
   + Network bandwidth
   + Wasted Backend resources
- 
+
+### Long Polling
+
+> Requests is taking long, I'll check with you later, but talk to me only when it's ready
+
+
+Where request/response & polling isn't ideal
+
++ A rquest takes ong time to process
+  + Upload a youtube video
++ The backend want to sends notification
+  + A user just logged in
++ Short Polling is good but chatty
++ Meet long polling(kafka uses it)
+
+What is Long Polling
+
++ Client sends a request
++ Server responds immediately with a handle
++ Client uses thta handle to check for status
++ Server DOES not reply until it has the response
++ So we got a handle, we can disconnect and we are less chatty
++ Some variation has timeouts too
+
+Long Polling Pros and Cons
+
++ Pros
+  + Less chatty and backend friendly
+  + Client can still disconnect
++ Cons
+  + Not real time
+
+
+#### Server Sent Events
+
+> One Request, a very very long response
+
+Limitations of Request/Response
+
++ Vanilla Request/Response isn't ideal for notification backend
++ Client wnats real time notification from backend
+  + A user just logged in
+  + A message is just received
++ Push just works but restrictive
++ Server Send Events work with Request/Response, and Http
++ Designed for HTTP
+
+What is Server Send Events
+
++ A response has start and end
++ Client sends a request
++ Server sends logical events as part of response
++ Server never writes the end of the response
++ It is still a request but an unending response
++ Client parses the streams data looking for this events
++ Working with request/response(HTTP)
+
+Server Send Events Pros and Cons
+
++ Pros
+  + Real time
+  + compatible with Request/Response
++ Cons
+  + Clients must be online
+  + Client might not be able to handle
+  + Polling is preferred for light clients
+  + HTTP/1.1 problem(6 connections)
+
 
 
 > sidecar pattern
