@@ -135,7 +135,38 @@ What is Push?
   + Polling is preferred for light clients
 
 
+#### Short Polling (短轮询)
 
+> Request is taking a while, i'll check with you later
+
+When request/response isn't ideal
+
++ A request takes long time to process
+  + Upload a youtube video
++ The backend want to sends notification
+  + A user just logged in
++ Polling is a good communication style
+
+
+#### What is Short Polling
+
++ Client sends a request
++ Server responds immediately with a handle
++ Server continues to process the request
++ Client uses that handle to check for status
++ Multiple 'short' request response as polls
+
+#### Short Polling Pros and Cons
+
++ Pros
+  + Simple
+  + Good for long running requests
+  + Client can disconnect
++ Cns
+  + Too chatty
+  + Network bandwidth
+  + Wasted Backend resources
+ 
 
 
 > sidecar pattern
