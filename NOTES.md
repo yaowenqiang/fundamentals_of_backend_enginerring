@@ -493,6 +493,101 @@ TCP/IP Model
 + Data link(layer 2)
 + Physical layer is not officially covered in the model
 
+#### IP Address
+
++ Layer 3 property
++ Can be set automatically or statically
++ Network and Host portion
++ 4 bytes in Ipv4 - 32 bits
+
+#### Network vs Host
+
++ a.b.c.d/x(a.b.c.d are integers) x is the network bits and remains are host
++ Example 192.168.254.0/24
++ The first 24 bits(3 bytes) are network the rest 8 are for host
++ This means we can have 2^24(16777216) networks and each network has 2^8(255) hosts
++ Also called a subnet
+
+#### Subnet mask
+
++ 192.168.254.0/24 is also called a subnet
++ The subnet has a mask 255.255.255.0
++ Subnet mask is used to determain whether an IP is in the same subnet
+
+#### Default Gateway
+
++ Most networks consists of hosts and a Default Gateway
++ When host A want to talk to B directly if both are in the same subnet
++ Otherwise A sends it to someone who might know, the gateway
++ The Gateway has an IP Address and each host should know its gateway
+
+E.g.Host 192.168.1.3 wants to talk to 192.168.1.2
+
++ 192.168.1.3 applies subnet mask to itsself and the destination Ip is 192.168.1.2
++ 255.255.255.0 & 192.168.1.3 = 192.168.1.0
++ 255.255.255.0 & 192.168.1.2 = 192.168.1.0
++ Same subnet! no need to route
+
+E.g.Host 192.168.1.3 wants to talk to 192.168.2.2
+
++ 192.168.1.3 applies subnet mask to itsself and the destination Ip is 192.168.2.2
++ 255.255.255.0 & 192.168.1.3 = 192.168.1.0
++ 255.255.255.0 & 192.168.2.2 = 192.168.2.0
++ Not the subnet! The packet is dent to the Defaut Gateway 192.168.1.100
+
+### The IP packet - Anatomy of the Ip Packet
+
+IP Packet
+
++ The IP packet has headers and data sections
++ IP Packet header is 20 bytes (can go up to 60 bytes if options are enabled)
++ Data section can go up to 65536
+
+#### IP Fragmentation(IP 分片)
+
+> 巨型帧（Jumbo Frames）
+
+IHL (Internet header length)
+
+> Stream Fragmentation and Reassembly Attacks
+
+
+> https://datatracker.ietf.org/doc/html/rfc791
+
+> https://en.wikipedia.org/wiki/IPv4
+
+> ECN(Explicit congestion Notification)(显式拥塞通知)
+
+> TCP black hole
+
+#### ICMP - Internet Control Message Protocol
+
+ICMP
+
++ Stands for Internet Control Message Protocol
++ Designed for informational messages
+  + Host unreachable, port unreachable, fragmentation needed
+  + Packet expired(Infinite loop in routers)
++ Use IP directly
++ PING and traceroute use it
++ Doesn't require listeners or ports to be opened
++ Lives in Layer 3
++ Some firwalls block ICMP for security reasons
++ That is why PING might not work in those cases
++ Disabling ICMP also can cause real damage with connection establishment
+  + Fragmentation needed
++ PING demo
+
+> https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol
+
+TraceRoute
+
++ Can you identify the entire path your IP Packet takes?
++ Clever use of TTL
++ Increment TTL slowly and you will get the router IP address for each hop
++ Doesn't always work as path changes and ICMP might be blocked
+
+
 ## Many ways to HTTPS
 
 ## Backend Execution patterns
