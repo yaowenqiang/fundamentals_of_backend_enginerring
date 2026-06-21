@@ -303,7 +303,53 @@ Complete Stateless System
 + JWT(JSON Web Token)
 + Definitions go nowhere
 
+### Sidecar Pattern
 
+> Thick clients, Thicker backends
+
+Changing the library is hard
+
++ Once you use the library your app is entrenched
++ App & Library 'should' be same language
++ Changing the library require retesting
++ Breaking changes Backward compatibility
++ Adding features to the library is hard
++ Microservices suffer
+
+What if we delegate communication?
+
++ Proxy communicate instead
++ Proxy has the rich library
++ Client has thin library(e.g.h1)
++ Meet Sidecar pattern
++ Each client must have a sidecar proxy
+
+Sidecar examples
+
++ Service Mesh proxies
+  + Linkerd,istio,Envoy
++ Sidecar proxy container
++ Must be layer 7 Proxy
+
+Pros & Cons of Sidecar proxy
+
++ Pros
+  + Language agnositc(polyglot)
+  + Protocol upgrade
+  + Security
+  + Tracing and Monitoring
+  + Service Discovery
+  + CAching
++ Cons
+  + Complexity
+  + Latency
+
+
+
+
+
+
+> TLS extension ALPN(Application layer portocol negotiation)
 ## Protocols
 
 ## Many ways to HTTPS
