@@ -350,7 +350,57 @@ Pros & Cons of Sidecar proxy
 
 
 > TLS extension ALPN(Application layer portocol negotiation)
+
 ## Protocols
+
+### Protocol Properties
+
+What to take into account when designing a protocol?
+
+What is a protocol?
+
++ A system that alloes two paries to communicate
++ A protocol is designed with a set of properties
++ Depending on the purpose of the protocol
++ TCP, UDP, HTTP, gRPC, FTP
+
+> It’s Time to Replace TCP in the Datacenter
+> https://arxiv.org/pdf/2210.00714
+> https://lwn.net/Articles/1003059/ 
+> thoe HOMA protocol
+
+Protocol properties
+
++ Data format
+  + Text based(plain text, JSON, XML)
+  + Binary(protobuf, RESP(redis resp protocol spec), h2(http2),h3(http3))
++ Transfer mode
+  + Message based(UDP, HTTP)
+  + Stream(TCP, WebRTC)
++ Addressing system
+  + DNS name,IP,MAC
++ Directionality
+  + Bidirectional(TCP)
+  + Unidirectional(HTTP)
+  + Full/Half duplex
++ State
+  + Stateful(TCP, gRPC, apache thrift)
+  + Stateless(UDP, HTTP)
++ Routing
+  + Proxies, Gateways
++ Flow & Congestion control
+  + TCP(flow & Congestion)
+  + UDP(No control)
++ Error management
+  + Error code
+  + Retries and timeouts
+
+
+
+
+
+
+
 
 ## Many ways to HTTPS
 
