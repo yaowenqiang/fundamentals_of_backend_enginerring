@@ -396,11 +396,102 @@ Protocol properties
   + Retries and timeouts
 
 
+#### OSI Model
+
+> Open Systems Interconnection Model
+
+Why do we need a communication model?
+
++ Agnostic applications
+  + Without a standard model, your application must have knowlgdge of the underlying network medium
+  + Image if you have to author different version of you apps so that it works on wifi vs ethernet vs LTE vs fiber
++ Network Equipment Management
+  + Without a standard model, upgrading network equipmentbecomes difficult
++ Decoupled innovation
+  + innovation can bedone in each layer separately without affecting the rest of the models
+
+What is the OSI Model?
+
++ 7 layers each describe a specific networking component
++ Layer 7 Application - HTTP/FTP/gRPC
++ Layer 6 Presentation - Encoding,Serialization
++ Layer 5 Session - Connection establishment, TLS
++ Layer 4 Transport - UDP/TCP
++ Layer 3 Network - IP
++ Layer 2 Data link - Frames, Mac address Ethernet
++ Layer 1 Physical - Electric signals, fiber or radio waves
+
+The OSI layers - an Example(sender)
+
++ Example sending a POST request to an HTTPS webpage
+
++ Layer 7 - Application
+  + POST request with JSON data to HTTPS server
++ Layer 6 Presentation
+  + Serialize JSON to the byte strings
++ Layer 5 - Session
+  + Request to establish TCP connections/TLS
++ Layer 4 - Transport
+  + Sends SYN request target port 443
++ Layer 3 - Network
+  + SYN is placed in IP packet(s) adds the source/dist IPs
++ Layer 2 - Data link
+  + Each packet goes into a single frame and adds the address/MAC addresses
++ Layer 1 - Physical
+  + Each frame becomes string of bites which converted into either a radio signal(wifi), electric signal(ethernet), or light(fiber)
++ Take it with a grain of salt, it's not always cut and try
+
+The OSI layers - an Example(receiver)
+
++ Receiver computer receives the POST request the other way round
++ Layer 1 - physical
+  + Radio, electric or light is received and converted into digital bites
++ Layer 2 - Data Link
+  + The data from Layer 1 is assembled into frames
++ Layer 3 - Network
+  + The frames from layer are assembled into IP packet
++ Layer 4 - Transport
+  + The Ip packets from layer 3 are assembled into TCP segments
+  + Deals with congestion control/flow control/retransmission in case of TCP
+  + If segment is SYN we don't need to go futher into more layers as we are still processing the connection request 
++ Layer 5 - Session
+  + The connection session is established or identified
+  + We only arrive at this layer when necessary (three way handshake is done)
++ Layer 6 - Presentation
+  + Deserialize flat byte strings back to JSON for the app to consume
++ Layer 7 - Application
+  + Application understands the JSON POST request and your express json or apache rquest receive event is triggered 
++ Take it with a grain of salt, its not always out and dry
 
 
+> MTU (maximum transmission unit)
 
+> TCP segment(tcp 报文段)
 
+> IP Packet(数据包)
 
+> Frame（帧）
+
+Layer 2 Swich (Data Link)
+Layer 3 Router, VPN (Network)
+Layer 4 Proxy, Firewall
+Layer 7 Load balancer/CDN
+
+The shortcomings of the OSI Model
+
++ OSI Model has too many layers which can be hard to comprehend
++ Hard to argue about which layer does what
++ Simpler to deal with Layers 5,6,7 as just one layer, application
++ TCP/IP Model does just that
+
+TCP/IP Model
+
++ Much simpler then OSI,just 4 layers
++ Application(Layer 5,6,7)
++ Transport(Layer 4)
++ Internet(Layer 3)
++ Data link(layer 2)
++ Physical layer is not officially covered in the model
 
 ## Many ways to HTTPS
 
