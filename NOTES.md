@@ -234,9 +234,33 @@ Server Send Events Pros and Cons
   + Polling is preferred for light clients
   + HTTP/1.1 problem(6 connections)
 
+### Publish Subscribe
 
+> One publisher many readers
+
+Pub/Sub Pros and Cons
+
++ Pros
+  + Scales w/ multiple receivers
+  + Great for microservices
+  + Loose coupling
+  + Works while clients not running
++ Cons
+  + Message delivery issues(Two generals problem)
+  + Complexity
+  + Network saturation(网络饱和)
+
+#### Rabbitmq demo
+
+> cloudamqp.com
 
 > sidecar pattern
+
+
+#### Multiplexing vs Demultiplexing
+
+> HTTP/2, QUIC, ConnectionPull, MPTCP
+
 
 ## Protocols
 
