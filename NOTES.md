@@ -257,9 +257,51 @@ Pub/Sub Pros and Cons
 > sidecar pattern
 
 
-#### Multiplexing vs Demultiplexing
+#### Multiplexing(复用) vs Demultiplexing(分用)
 
 > HTTP/2, QUIC, ConnectionPull, MPTCP
+
+### Stateful vs Stateless backend
+
++ Stateful
+  + stores about clients in its memory
+  + Depends on the information being there
++ Stateless
+  + Client is responsible to to 'transfer' the state with every request
+  + May store but can safely lose it
+
+### Stateless backends
+
++ Stateless backends can still store data somewhere else
++ Can you restart the backend during idle time while the client workflow continues to work?
+
+### What makes a backend stateless?
+
++ Stateless backends can store state somewhere else (database)
++ The backend remain stateless but system is stateful
++ Can you restart the backend during idle time while the client workflow continues to work?
+
+Stateless vs Stateful protocols
+
++ The protocol can be designed to store states
++ TCP is stateful
+  + Sequences, Connections file descriptor
++ UDP is stateless
+  + DNS send queryID in UDP to identify queries
+  + QUIC(stateful) sends connectionID to identify connection
++ You can build a stateless protocol on top of a stateful one and vise versa
++ HTTP on top of TCP
++ If TCP breaks, HTTP blindly create another one
++ QUIC on top of UDP
+
+Complete Stateless System
+
++ Stateless Systems are rare
++ State is carried with every request
++ A backend service that relies completely on the input
+  + Check if input param is a prime number
++ JWT(JSON Web Token)
++ Definitions go nowhere
 
 
 ## Protocols
