@@ -403,7 +403,7 @@ Protocol properties
 Why do we need a communication model?
 
 + Agnostic applications
-  + Without a standard model, your application must have knowlgdge of the underlying network medium
+  + Without a standard model, your application must have knowledge of the underlying network medium
   + Image if you have to author different version of you apps so that it works on wifi vs ethernet vs LTE vs fiber
 + Network Equipment Management
   + Without a standard model, upgrading network equipmentbecomes difficult
@@ -586,6 +586,46 @@ TraceRoute
 + Clever use of TTL
 + Increment TTL slowly and you will get the router IP address for each hop
 + Doesn't always work as path changes and ICMP might be blocked
+
+### UDP
+
++ Stands for User Datagram Protocol
++ Layer 4 protocol
++ Ability to address processes in a host using ports
++ Simple protocol to send and receive data
++ Prior communication not required(double edge sword)
++ Stateless no knowledge is stored on the host
++ 8 byte header Datagram
+
+### UDP Use cases
+
++ Video streaming
++ VPN
++ DNS
++ WebRTC
+
+> TCP meltdown
+> DNS Poison
+> ARP Poison
+
+### Multiplexing and Demultiplexing
+
++ IP target hosts only 
++ Hosts run many apps each with different requirements
++ Ports now identify the 'app' or 'process'
++ Sender multiplexes all its apps into UDP
++ Receiver demultiplex UDP datagrams to each app
+
+### Source and Destination Port
+
++ App1 on 10.0.0.1 sends data to AppX on 10.0.0.2
++ Destination Port = 53
++ AppX responds back to App1
++ We need Source Port so we know how to send back data
++ Source Port = 5555
+
+
+
 
 
 ## Many ways to HTTPS
