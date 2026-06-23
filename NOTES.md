@@ -624,9 +624,37 @@ TraceRoute
 + We need Source Port so we know how to send back data
 + Source Port = 5555
 
+### UDP Datagram
 
++ UDP Header is 8 bytes only(IPv4)
++ Datagram slides into an IP packet as 'data'
++ Ports are 16 bite(0 to 65535)
 
+> https://datatracker.ietf.org/doc/html/rfc768
+> https://en.wikipedia.org/wiki/User_Datagram_Protocol
 
+### UDP Pros and Cons - The power and drawbacks of UDP
+
+#### Pros
+
++ Simple Protocol
++ header size is small so datagrams are small
++ uses less bandwidth
++ Stateless
++ Consumes less memory(no state stored in the server/client)
++ Low latency - no handshake, order, retransmission or guaranteed delivery
+
+#### Cons
+
++ No acknowledgement
++ No guarantee delivery
++ connection-less - anyone can send data without prior knowledge
++ No flow control
++ No congestion control
++ No ordered packets
++ Security - can be easily spoofed
+
+> nc -u 127.0.0.1 5501
 
 ## Many ways to HTTPS
 
