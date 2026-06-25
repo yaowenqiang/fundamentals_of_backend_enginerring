@@ -656,6 +656,49 @@ TraceRoute
 
 > nc -u 127.0.0.1 5501
 
+###  TCP(Transmission Control protocol)
+
+#### TCP
+
++ Stands for Transmission Control Protocol
++ Layer 4 protocol
++ Ability to address processes in a host using ports
++ 'Controls' the transmission unlike UDP which is a firehose
++ Connection
++ Requires handshake
++ 20 bytes headers Segment(can go to 60)
++ Stateful
+
+#### TCP Use cases
+
++ Reliable communication
++ Remote shell
++ Database connections
++ Web communications
++ Any bidirectional communication
+
+#### TCP Connection
+
++ Connection is a Layer 5(session)
++ Connection is an agreement between client and server
++ Must create a connection to send data
++ Connection is identified by 4 properties
+  + SourceIp:SourcePort
+  + DestinationIp:DestinationPort
++ Can't send data outside of a connection
++ Sometimes called socket or file descriptor
++ Requires a 3-way TCP handshake
++ Segments are sequenced and ordered
++ Segments are acknowledged
++ Lost segments are retransmitted
+
+> MultiPathTcp
+
+
+
+
+
+
 ## Many ways to HTTPS
 
 ## Backend Execution patterns
