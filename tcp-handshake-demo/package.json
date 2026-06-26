@@ -1,0 +1,26 @@
+{
+  "name": "tcp-handshake-demo",
+  "version": "1.0.0",
+  "description": "TCP 三次握手与四次挥手演示项目",
+  "main": "handshake-teardown.js",
+  "scripts": {
+    "start": "node handshake-teardown.js",
+    "demo": "node detailed-demo.js",
+    "state": "node state-machine.js",
+    "interactive": "node interactive-demo.js"
+  },
+  "keywords": [
+    "tcp",
+    "handshake",
+    "teardown",
+    "networking",
+    "backend",
+    "三次握手",
+    "四次挥手"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

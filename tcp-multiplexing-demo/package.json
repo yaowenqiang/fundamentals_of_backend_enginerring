@@ -1,0 +1,20 @@
+{
+  "name": "tcp-multiplexing-demo",
+  "version": "1.0.0",
+  "description": "TCP Multiplexing & Demultiplexing 演示项目",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "demo": "node detailed-demo.js",
+    "test": "node clients.js"
+  },
+  "keywords": [
+    "tcp",
+    "multiplexing",
+    "demultiplexing",
+    "networking",
+    "backend"
+  ],
+  "author": "",
+  "license": "MIT"
+}

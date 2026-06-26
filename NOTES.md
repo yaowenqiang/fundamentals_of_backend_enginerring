@@ -694,8 +694,46 @@ TraceRoute
 
 > MultiPathTcp
 
+#### Multiplexing and demultiplexing
 
++ IP targets hosts only
++ Hosts run many apps each with different requirements
++ Ports now identify the 'app' or 'process'
++ Sender multiplexes all its apps into TCP connections
++ Receiver demultiplex TCP segments to each app based on connection paris
 
+#### Connection Establishment
+
++ App1 on 10.0.0.1 want to send data to AppX on 10.0.0.2
++ App1 sends SYN to AppX to synchronous sequence numbers
++ AppX sends SYN/ACK to synchronous its sdquence number
++ App1 ACKs AppX SYN
++ Three way handshake
+
+#### Sending data
+
++ App1 sends data to AppX
++ App1 encapsulate the data in a segment and send it
++ AppX acknowledges the segment
++ Hint: Can App1 send new segment before ack of old segment arrives?(yes)
+
+#### acknowledgement
+
++ App1 sends segment 1,2 and 3 to AppX
++ AppX acknowledge all of them with a singel ACK 3
+
+#### Lost data
+
++ App1 sends segment 1,2 and 3 to ApX
++ Seg 3 is lost, AppX acknowledge 3
++ App1 resend Seg 3
+
+#### Closing Connection
+
++ App1 wants to close the connection
++ App1 send FIN, APPX ack
++ AppX sends FIN, App1 ACK
++ Four way handshake
 
 
 
