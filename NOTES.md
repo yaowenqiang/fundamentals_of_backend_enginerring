@@ -735,7 +735,26 @@ TraceRoute
 + AppX sends FIN, App1 ACK
 + Four way handshake
 
+#### TCP Segment
 
++ TCP segment header is 20 bytes and can go up to 60 bytes
++ TCP segments slides into an ip packet as 'data'
++ Port are 16 bit(0 to 65535)
++ Sequences, Acknowledgement, flow control and more
+
+> https://en.wikipedia.org/wiki/Transmission_Control_Protocol
+
+> https://datatracker.ietf.org/doc/html/rfc793
+
+#### maximum Segment Size
+
++ Segment Size depends the MTU of the network
++ Usually 512 bytes can go up to 1460
++ Default MTU in the internet is 1500(results in MSS 1460)
++ Jumbo frames MTU goes to 9000 or more
++ MSS can be larger in jumbo frames cases
+
+> https://github.com/nikhilroxtomar/TCP-Client-Server-Implementation-in-C.git
 
 ## Many ways to HTTPS
 
