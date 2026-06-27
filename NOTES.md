@@ -767,6 +767,54 @@ TraceRoute
 + Authenticate the server
 + extensions(SNI, preshared, ORTT)
 
+
+### HTTP/1.1 - Simple Web protocol lasts decades
+
+#### Client/Server
+
++ (Client)Browser, python or javascript app, or any app tha makes HTTp request
++ (Server)HTTP Web Server, e.g.IIS,Apache Tomcat, NodeJS, Python Tomado
+
+> curl -v http://husseinnasser.com/about
+
+#### HTTP 1.0
+
++ New TCP connection with each request
++ Slow
++ Buffering(thranfer-encoding chunked didn't exist)
++ No multi-homed websites(HOST header)
+
+#### HTTP 1.1
+
++ Persisted TCP connection
++ Low latency & Low CPU Usage
++ Streaming with Chunked transfer
++ Pipelining(disabled by default)
++ Proxying & Multi-homed websites
+
+#### HTTP/2 
+
++ SPDY(google)
++ Compression
++ Multiplexing
++ Server Push(dead)
++ Secure by default(protocol ossification(协议僵化))
++ Protocol Negotiation during TLS(NPN/ALPN)
+
+> Application Layer Protocol Negotiation
+
+
+
+> https://ece.engineering.arizona.edu/undergrad-programs/courses/ECE462
+
+> http://www.ece.arizona.edu/~ece462/Lec03-pipe/
+
+
+
+> HTTP request smuggling(请求走私)
+
+> https://portswigger.net/web-security/request-smuggling
+
 #### Vanilla(原生) HTTP
 
 #### HTTPS

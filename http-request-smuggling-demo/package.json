@@ -1,0 +1,37 @@
+{
+  "name": "http-request-smuggling-demo",
+  "version": "1.0.0",
+  "description": "HTTP Request Smuggling 教育演示项目",
+  "main": "educational-demo.js",
+  "scripts": {
+    "start": "node educational-demo.js",
+    "demo": "node educational-demo.js --server",
+    "techniques": "node smuggling-techniques.js",
+    "detect": "node detection-tools.js",
+    "defense": "node defense-measures.js",
+    "defense-server": "node defense-measures.js --server",
+    "test": "node detection-tools.js && node smuggling-techniques.js"
+  },
+  "keywords": [
+    "http",
+    "security",
+    "request-smuggling",
+    "web-security",
+    "cybersecurity",
+    "educational",
+    "defense"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/http-request-smuggling-demo"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/http-request-smuggling-demo/issues"
+  },
+  "homepage": "https://github.com/yourusername/http-request-smuggling-demo#readme"
+}
