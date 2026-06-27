@@ -803,6 +803,11 @@ TraceRoute
 
 > Application Layer Protocol Negotiation
 
+#### HTTP Over QUIC(HTTP/3)
+
++ Replaces TCP with QUIC(UDP with Congestion control)
++ All HTTP/2 features
++ Without HOL(head of line blocking)
 
 
 > https://ece.engineering.arizona.edu/undergrad-programs/courses/ECE462
@@ -820,12 +825,161 @@ TraceRoute
 #### HTTPS
 
 
+
 #### TLS 1.2 Handshake
 
 #### Diffie Hellman
 
 #### TLS 1.3 Improvements
 
+
+##### Node HTTPS - understanding HTTPS/TLS
+
+HTTPS
+
++ Hypertext transfer protocol(Secure)
++ Node implements HTTPS client and server 
++ On top of TLS(Transport Layer Security)
+
+Encryption
+
++ Encryptions are two types
++ Symmetric -> You encrypt with key and decrypt with the same key
+  + One key
+  + Fast but both client and server must have the same key
++ Asymmetric -> You encrypt with a key and decrypt with another
+  + Comes in pairs Two keys Private key and Public key
+  + Slower but both client and server can have their own public keys
++ We always want to encrypt with Symmetric encryptions
++ Exchange the symmetric key with asymmetric encryption
+
+Symmetric Encryption
+
++ Assume both parties have the same key(The most difficult ting)
++ Users uses the key to encrypt message
++ Send it
++ Receiver gets the encrypted message
++ Uses the same key to decrypt
++ E.g.AES
+
+##### Public key VS Privaet Keys Rules
+
++ Public key private key are pairs(e.g. Red Public, Blue private)
++ Given the Private key you can generate the Public key
++ Given the Public key you cannot get the Private key
+
+#### Encrypting with the Public Key
+
++ You can encrypt a message with Public key
++ And only owner of Private key can decrypt it
++ Proved Authenticity
+
+#### Encrypting with the Private Key
+
++ You can encrypt a message with the Private Key
+  + And only the corresponding Public key can decrypt it
+  + Only owner of the private key could have signed this document
+  + Protects confidentiality, nobody could have missed with it
+
+#### Certificates
+
++ We need a way to proof authenticity
++ Generate a pair of public/private key
++ Put a public key in a certificate
++ Put the website name in the certificate
++ Sign the certificate with the privatekey
++ meet x509
++ Certificates can be 'self signed'
+  + ie private key signing the cert belong to the public key
+  + Usually untrusted and used for testing/local
++ Certificates can sign 'other certificates'
+  + Creating a trust chain
+  + issuer name is who issued it
+  + Lets encrypt
++ Untimately a ROOT cert is found
+  + ROOT certs are always self signed
+  + They are trusted by everyone
+  + installed with OS root(ceritficate store)
+
+#### Certificates Verification
+
+#### TLS
+
++ Transport Layer Security
++ Encrypt using the same key on both client and server
++ For that we need to exchange the key
++ We use public key encryption to exchange key
++ We dhare certificate for authentication
+
+Problem with that approach
+
++ Encrypting the symmetric key with public key is simple
++ But its not perfectly forward
++ Attacker can record all encrypted communication
++ If the server private key is leaked(heart bleed)
++ They can go back and decrypt everything
++ We need ephemeral keys!Meet Diffie Hellman
+
+#### Diffie Hellman
+
++ Let us not share the symmetric key at all
++ Let us only share parameters enough to generate it
++ Each party generate the same key
++ party one generate x number(private)
+  + also generates g and n(public, random and prime)
++ party two generates Y number(private)
++ party 1 sends g and n to Party 2
++ Anyone can sniff those values fine
++ Now both has g and n
+
+#### More problems! MITM(man in the middle)
+
++ This solves perfect secrecy
++ But what if someone intercepts and put their own DH keys
++ MITM replace Y 's parameter with their own'
++ X doesn't know that happened(it's just numbers)
+
+#### Solved with signing
+
++ We bring back public key encryption
++ But only to sign the entire DH message
++ With certificates
+
+#### There is more to TLS
+
++ More stuff is sent in the TLS handshake
++ TLS extensions
+  + ALPN
+  + SNI
++ Cipher algorithms
++ Key generation algorithms
++ Key size
++ Digital signature algorithms
++ Client side certificates
+
+#### Node HTTPS
+
++ Node HTTPS Server requires a certificate and private key
++ The rest is the same
++ More work though
++ Requests gets hit with additional cost
++ Responses get hit with additional cost
+
+#### Generate Private key and Certificate with OpenSSL
+
++ OpenSSL is a library for cryptographic operations
++ Generate private key
+  + openssl genrsa -out private-key.pem 2048
++ Generate Certificate x509(which contains public key)
+  + openssl req -new -x509 -key private-key.pem -out certificate.pem -days 365
+  + Answer questions to fill the 509 fields
+  + Most important is common name, subject alternative which is the website
+
+> curl --insecure https://localhost:8443
+
+> curl -k https://localhost:8443
+
+> The Heartbleed Bug
 
 ## Many ways to HTTPS
 
