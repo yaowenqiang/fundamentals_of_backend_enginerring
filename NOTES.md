@@ -981,7 +981,48 @@ Problem with that approach
 
 > The Heartbleed Bug
 
+### WebSockets
+
+WebSockets handshake ws:// or wss://
+
+> 101 switch protocol
+
+#### Websocket use cases
+
++ Chatting
++ Live Feed
++ Multiplayer gaming
++ Showin client progress/logging
+
+
+#### Websocket Pros and Cons
+
+
+Pros
+
++ Full-dupliex(no polling)
++ HTTP compatible
++ Firewall friendly(standard)
+
+Cons
+
++ Proxying is tricky
++ L7 LB challenging(timeoutso)
++ Stateful,difficult to horizontially scale
+
+#### Do you have to use WebSockets?
+
++ No
++ Rule of thumb - do you absolutely need bidirectional communication?
++ Long polling
++ Server Send Events
+
+
+
+
 ## Many ways to HTTPS
+
+> websocket ping and pong 
 
 ## Backend Execution patterns
 
