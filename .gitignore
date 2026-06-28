@@ -4,3 +4,4 @@ node_modules
 server_send_events/node_modules
 rabbitmq/node_modules
 websocket-server/node_modules
+grpc-demo/node_modules

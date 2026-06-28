@@ -1077,6 +1077,69 @@ HTTP/2 Cons
 
 > QUIC actually is the reverse, odd streams are server while even streams are the client's
 
+
+### gRPC - Taking HTTP/2 to the next level
+
+Client Server Communication
+
++ SOAP, REST,GraphQL
++ SSE, WebSockets
++ Raw TCP
+
+#### The problem with Clien Libraries
+
++ Any communication protocol needs client libraries for the language of choise
+  + SOAP Library
+  + HTTP Client Library
++ Hard to maintain and patch client libraries
+  + HTTP/1.1 HTTP/2,new features, security etc.
+
+#### Why gRPC was invented?
+
++ Client library: One library for popular languages
++ Protocol: HTTP/2(hidden implementation)
++ Message Format: Protocol buffers as format
+
+#### gRPC modes
+
++ Unary RPC
++ Server streaming RPC
++ Client streaming RPC
++ Bidirectional streaming RPC
+
+#### Coding time
+
++ Todo application(server, client) with gRPC
++ createTodo()
++ readTodos()//synchronous
++ readTodos()//server stream
+
+#### gPRC Pros and Cons
+
+##### Pros
+
++ Fast & Compact
++ One Client Library
++ Progress Feedback(upload)
++ Cancel Request(h2)
++ H2/Protobuf
+
+##### Cons
+
++ Schema
++ Thick Client
++ Proxies
++ Errro handling
++ No native browser support
++ Timeouts(pub/sub)
+
+
+> The Story of Why We Migrate to gRPC and How We Go About It - Matthias Grüter, Spotify
+
+> https://www.youtube.com/watch?v=fMq3IpPE3TU
+
+> Hermes
+
 ## Many ways to HTTPS
 
 > websocket ping and pong 
