@@ -1406,6 +1406,38 @@ rc.addTrack()
 + Multiple Cores help
 + Role of thumb -> # Core = # Processes
 
+### Connection Establishment
+
++ TCP Three way handshake
++ SYN/SYN-ACK/ACK
++ But what happens on the backend?
++ Server listens on an address:port
++ Client connects
++ Kernel does the handshake creating a connection
++ Backend process 'Accepts'the connection
++ Kernel creates a socket & two queues SYN and Accept
++ Client send a SYN
++ Kernel adds to SYN queue, replies withSYN/ACK
++ Client replies with ACK
++ Kernel finishs the connection
++ Kernel removes SYN from the SYN queue
++ Kernel adds full connection to Accept queue
++ Backend accepts a connection, removed from accept queue
++ A file descriptor is created for the connection
+
+
+> https://www.securityweek.com/thousands-mongodb-databases-found-exposed-internet/
+
+> https://builders.intel.com/docs/networkbuilders/intel-ethernet-controller-800-series-device-personalization-ddp-for-telecommunications-workloads-technology-guide.pdf
+
+
+#### Problem with accepting connections
+
++ BAckend doesn't accept fast enough
++ Clients who don't ACK
++ Small backlog
+
+> SYN flood attach
 
 
 
