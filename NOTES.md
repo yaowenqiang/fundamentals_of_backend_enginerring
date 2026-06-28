@@ -1140,6 +1140,199 @@ Client Server Communication
 
 > Hermes
 
+
+### WebRTC
+
+WebRTC Overview
+
++ Stands for Web Real-Time Communication
++ Find a peer to peer path to exchange video and audio in an efficient and low latency manner
++ Standardized API
++ Enables rich communications browsers, mobile, IOT devices
++ A want to connect to B
++ A finds out all possible ways the public can connect to it
++ B finds out all possible ways the public can connect to it
++ A and B signal this session information vir other means
+  + WhatsApp, QR, Tweet,WebSockets, HTTP Fetch...
++ A connects to B via the most optimal path
++ A & B also exchanges their supported media and security
+
+> SDP(session Description Protocol)
+
+#### WebRTC Demystified
+
++ NAT
++ STUN, TURN
++ ICE
++ SDP
++ Signaling the SDP
+
+> NAT table
+
+
+#### NAT Translations Method
+
++ One to One NAT(Full-cone NAT)
++ Address restricted NAT
++ Port restricted NAT
++ Symmetric NAT
+
+##### One to One NAT(Full cone NAT)
+
++ Packets to external IP:port on the router always maps to internal IP:port without exceptions
+
+##### Address restricted NAT
+
++ Packets to external IP:port on the router always maps to internal IP:port as long as source address from packet matches the table(regardless of port)
++ Allow if we communicated with this host before
+
+##### Port Restricted NAT
+
++ Packets to external IP:port on the router always maps to internal Ip:port as long as source address and port from packet matches the table
++ Allow if we communicated with this host:port before
+
+##### Symmetric NAT
+
++ Packets to external IP:port on the router always maps to internal IP:port as long as soure address and port from packet matches the table
++ Only Allow if the full pair match
+
+#### STUN
+
++ Session Traversal Utilities for NAT
++ Tell me my public ip address/port throught NAT
++ Works for Full-cone, Port/Address restricted NAT
++ Doesn't work for symmetric NAT
++ STUN server port 3478, 5349 for TLS
++ Cheap to maintain
+
+#### TURN
+
++ Traversal Using Relays around NAT
++ In case of Symmetric NAT we use TURN
++ It's just a server that relays packets
++ TURN default server port 3478, 5349 for TLS
++ Expensive to maintain and run
+
+#### ICE
+
++ Interactive Connectivity Establishment
+
++ ICE collects all available candidates(local IP addresses, reflexive addresses - STUN ones and relayed addresses - TURN ones)
++ Called ice candidates
++ All the collected addresses are then sent to the remote peer via SDP
+
+#### SDP
+
++ Session Description Protocol
++ A format that describes ice candidates, networking options, media options, security options and other stuff
++ Not really a protocol its a format
++ Most important conncept in WebRTC
++ The goal is to take the SDP genereted by a user and send it 'somehow' to the other party
+
+#### Signaling
+
++ SDP Signaling
++ Send the SDP that we just generated somehow to the other party we wish to communicate with
++ Signaling can be done via a tweet, QR code, Whatsapp, WebSockets, HTTP request DOESN'T MATTER!Just get that large string to the other party
+
+#### WebRTC Denystified
+
++ A wants to connect to B
++ A creates an 'offer', it fines all ICE candidates, security options, audio/video options and generates SDP, the offer is basically the SDP
++ A signals the offer somehow to B(whatsapp)
++ B creates the 'answer' after setting A's offer
++ B signals the 'answer'to A
++ Connection is created
+
+> https://github.com/samyk/slipstream
+
+#### WebRTC Demo
+
++ We will connect two browsers(Browser A and Browser B)
++ A will create an offer(SDP) and set it as local description
++ B will get the offer and set it as remote description
++ B creates an answer sets its as its local description and signal the answer(SDP) to A
++ A sets the answer as its remote description
++ Connection established, exchange data channel
+
+
+```javascript
+const lc = new RTCPeerConnection()
+const dc = lc.createDataChannel('channel')
+dc.onmessage = e => console.log('just got a message '+ e.data);
+dc.onopen = e => console.log('Connection opened!');
+lc.onicecandidate = e => console.log('New Ice candidate! reprinting SDP ' + JSON.stringify(lc.localDescription))
+lc.createOffer().then(o => lc.setLocalDescription(o)).then(a => console.log('Set successfully!'));
+// copy the offer
+
+const offer = {};
+const rc = new RTCPeerConnection();
+rc.onicecandidate = e => console.log('New Ice candidate! reprinting SDP' + JSON.stringify(rc.localDescription));
+rc.ondatachannel = e => {
+    rc.dc = e.channel;
+    rc.dc.onmessage = e => console.log('new message from client: ' + e.data);
+    rc.dc.onopen = e => console.log('connection OPENED!!!');
+};
+rc.setRemoteDescription(offer).then(a => {
+    console.log('Offer set');
+});
+
+rc.createAnswer().then(a => {
+    rc.setLocalDescription(a)
+}).then(a => console.log('answer created!'));
+
+conset anser = {};
+lc.setRemoteDescription(answer);
+dc.send('hello')
+rc.dc.send('hi')
+rc.addTrack()
+
+```
+
+#### WebRTC Pros & Cons
+
+##### Pros
+
++ P2p is great! low latency for high bandwidth content
++ Standardized API I don't have to build my own
+
+##### Cons
+
++ Maintaining STUN & TURN servers
++ Peer 2 Peer fails apart in case of multiple participants(discord case)
+
+#### More WebRTC stuff
+
+##### Media API
+
++ getuserMedia to access microphone, video camera
++ RTCPConnection.addTrack(stream)
++ https://www.html5rocks.com/en/tutorials/webrtc/basics/
+
+#### OnIceCandidate and add IceCandidate
+
++ To maintain the connection as new candidate come and go
++ onICeCandidate tells user there is a new candidate after the SDP has already been created
++ The candidate is signaled and sent to the other party
++ The other party uses addiceCandidate to add it to its SDP
+
+#### Set custom TURN and STUN Server
+#### Create your own STUN & TURN server
+
++ coturn open source project
+> https://github.com/coturn/coturn
+
+#### Public STUN Servers
+
++ stun1.1.google.com:19302
++ stun2.1.google.com:19302
++ stun3.1.google.com:19302
++ stun4.1.google.com:19302
++ stun.stunprotocol.org.3478
+
+
+
+
 ## Many ways to HTTPS
 
 > websocket ping and pong 
