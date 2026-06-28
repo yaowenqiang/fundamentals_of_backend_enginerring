@@ -1350,6 +1350,70 @@ rc.addTrack()
 
 ## Backend Execution patterns
 
+> How Backends accept, dispatch and execute requests
+
+### Process vs Thread
+
+#### What is a Process
+
++ A set of instructions
++ Has an isolated memory
++ Has a PID
++ Scheduled in the CPU
+
+#### What is a Thread
+
++ Light weight Process(LWP)
++ A set of instructions
++ Shared memory with parent process
++ Has a ID
++ Scheduled in the CPU
+
+#### Single Thread Process
+
++ One Process with a single thread
++ Simple
++ Example: Nodejs
+
+#### Multi-Processes
+
++ App has multiple processes
++ Each has its own Memory
++ Examples NGINX/Postgres
++ Take advantage of multi-cores
++ More memory but isolated(through fork)
++ Redis backup routine(COw)
+
+> https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/
+
+#### Multi-Thread
+
++ One Process, multiple threads
++ Shared Memory(compete)
++ Take advantage of multi-cores
++ Require less memory
++ Race conditions
++ Locks and Latches(SQL Server)
++ Examples Apache, Envoy
+
+> https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-max-degree-of-parallelism-server-configuration-option?view=sql-server-ver17
+
+
+#### How many is too many?
+
++ Too many processes/threads
++ CPU context switch
++ Multiple Cores help
++ Role of thumb -> # Core = # Processes
+
+
+
+
+
+
+
+
+
 ## Proxying and Load Balancing
 
 
