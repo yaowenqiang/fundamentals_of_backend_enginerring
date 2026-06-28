@@ -1041,6 +1041,42 @@ HTTP/2 Cons
 
 ### HTTP/3 - HTTP over QUIC multiplexed streams
 
+
+#### TCP head of line blocking
+
++ TCP segments must be delivered in order
++ But streams don't have to
++ Blocking requests
+
+#### HTTP/3 & QUIC
+
++ HTTP/3 uses QUIC
++ Like HTTP/2, QUIC has streams
++ But QUIC ues UDP instead
++ Application decides the boundary
+
+#### HTTP/3 & QUIC Pros
+
++ QUIC has many other benefits
++ Merges Connection setup + TLS in one handshake
++ Has congestion control at stream level
++ Connection migraiton(connectionID, not encrypted)
++ Why not HTTP/2 over QUIC?
+  + Header copression algorithm(H-back)
+
+> CRIME(Compression Ratio into-leak Made Easy)
+
+
+#### HTTP/3 & QUIC Cons
+
++ Takes a lot of CPU(parsing logic)
++ UDP could be blocked
++ IP Fragmentation is the enemy
+
+
+
+> QUIC actually is the reverse, odd streams are server while even streams are the client's
+
 ## Many ways to HTTPS
 
 > websocket ping and pong 
