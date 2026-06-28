@@ -3,3 +3,4 @@ short_polling/node_modules/
 node_modules
 server_send_events/node_modules
 rabbitmq/node_modules
+websocket-server/node_modules
