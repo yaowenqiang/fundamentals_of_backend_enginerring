@@ -1335,6 +1335,17 @@ rc.addTrack()
 
 ## Many ways to HTTPS
 
+### HTTPS over TCP With TLS 1.2
+### HTTPS over TCP With TLS 1.3
+### HTTPS over QUIC(HTTP/3)
+### HTTPS over TFO(TCP Fast Open) with TLS 1.3
+### HTTPS over TCP with TLS 1.3 0RTT
+### HTTPS over QUIC(HTTP/3) 0RTT
+
+> https://blog.cloudflare.com/even-faster-connection-establishment-with-quic-0-rtt-resumption/
+
+
+
 > websocket ping and pong 
 
 ## Backend Execution patterns
