@@ -1017,8 +1017,29 @@ Cons
 + Long polling
 + Server Send Events
 
+### HTTP/2
+
+> early hands
+
+HTTP/2 Pros
+
++ Multiplexing over Single Connection(save resources)
++ Compression(Headers & Data)
++ Server Push
++ Secure by default
++ Protocol Negotiation during TLS(ALPN)
+
+HTTP/2 Cons
+
++ TCP head of line blocking(队头阻塞)
++ Server Push never picked up
++ High CPU usage
 
 
+
+> https://lucid.co/techblog/2019/04/10/why-turning-on-http2-was-a-mistake 
+
+### HTTP/3 - HTTP over QUIC multiplexed streams
 
 ## Many ways to HTTPS
 
