@@ -1439,6 +1439,18 @@ rc.addTrack()
 
 > SYN flood attach
 
+#### Reading and Sending Data
+
+> Receive vs Send buffers
+
+##### Send and receive buffers
+
++ Client sends data on a connection
++ Kernels put data in receive buffer
++ Kernel ACKs(may delay) and update window
++ Apps calls read to copy data
+
+> struct sk_bff
 
 
 
