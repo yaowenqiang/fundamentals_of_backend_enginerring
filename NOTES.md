@@ -1450,8 +1450,27 @@ rc.addTrack()
 + Kernel ACKs(may delay) and update window
 + Apps calls read to copy data
 
+receive buffers
+
+send buffers
+
+##### Problems with reading and sending
+
++ Backend doesn't read fast enough
++ Receive queue is full
++ Client slows down
+
+
+
+> nigel algorithm
+
+> delayed ack
+
+> openssl,liberal ssl, wolfssl, rust ssl 
+
 > struct sk_bff
 
+#### Single Listener/Singel Worker Thread
 
 
 
