@@ -1483,6 +1483,17 @@ send buffers
 
 > ramcloud
 
+#### Multiple Threads single Socket
+
+> nginx
+
+#### Multiple Listeners on the same port
+
+> SO_REUSEPORT
+> socket sharding
+
+#### Idempotency
+
 
 
 
